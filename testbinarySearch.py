@@ -1,4 +1,4 @@
-import getpass
+# import getpass
 
 def binary_search_rotation(lo, hi, condition):
     while lo <= hi:
@@ -158,13 +158,13 @@ test12 = {
 
 
 tests = [test0, test1, test2,test3, test4, test5, test6, test7, test8,test9, test10,test11, test12]
+#Irrelevant
+# if __name__ == '__main__':
+#     print('Initiating program')
+#     password = getpass.getpass(prompt="Enter Your Password \n")
 
-if __name__ == '__main__':
-    print('Initiating program')
-    password = getpass.getpass(prompt="Enter Your Password \n")
-
-    if password == 'ceejay':
-        print("Access Granted")
-        print(evaluate_test_case(count_rotations_generic, tests))
-    else:
-        print('Wrong Credentials')
+#     if password == 'ceejay':
+#         print("Access Granted")
+#         print(evaluate_test_case(count_rotations_generic, tests))
+#     else:
+#         print('Wrong Credentials')
