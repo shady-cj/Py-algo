@@ -3,13 +3,16 @@
 
 
 def quicksort(nums, start=0, end=None):
+
     # print('quicksort', nums, start, end)
     if end is None:
         nums = list(nums)
         end = len(nums) - 1
     
     if start < end:
+    
         pivot = partition(nums, start, end)
+   
         quicksort(nums, start, pivot-1)
         quicksort(nums, pivot+1, end)
 
@@ -22,7 +25,8 @@ def partition(nums, start=0, end=None):
     
     # Initialize right and left pointers
     l, r = start, end-1
-    
+   
+
     # Iterate while they're apart
     while r > l:
         # print('  ', nums, l, r)
@@ -44,3 +48,12 @@ def partition(nums, start=0, end=None):
         return l
     else:
         return end
+
+
+import random
+
+in_list = list(range(10000))
+out_list = list(range(10000))
+random.shuffle(in_list)
+
+print(quicksort(in_list))

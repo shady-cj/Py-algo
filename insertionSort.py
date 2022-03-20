@@ -17,3 +17,5 @@ out_list = list(range(10000))
 random.shuffle(in_list)
 # print(insertion_sort(in_list))
 
+[1,2,4,5,6,7]
+
