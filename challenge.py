@@ -52,7 +52,7 @@ def recursive_lcs( arr1, arr2, idx1=0, idx2=0):
 
     # Time complexity of this approach is O(2^m+n) where m and n are the lengths of the 2 strings/array
     #  
-print(recursive_lcs(['a','b','c','e','y','f','d','e'], ['a','e','e','e','e','b','c','e','y','d','e']))
+# print(recursive_lcs(['a','b','c','e','y','f','d','e'], ['a','e','e','e','e','b','c','e','y','d','e']))
 
 
 # improved solution using memoization
@@ -93,7 +93,7 @@ def recursive_lcs_memo(arr1, arr2, idx1=0, idx2=0, memo={}):
     return memo[idx]
 
 
-# print(recursive_lcs_memo(['a','b','c','e','y','f','d','e'], ['a','e','e','e','e','b','c','e','y','d','e']))
+print(recursive_lcs_memo("serendipitous", "precipitation"))
 
 # Memoization approach makes sure you don't repeat the same subproblems and you can save the result of the subproblems and use it later... since we will comparing those 2 options in the last part of the function that is the else condition... using the first approach poses a problem of re-evaluating the same sub-problems again and again... thus we use memoization to avoid this problem... 
 # this is the time complexity of the memoization approach is O(m*n) where m and n are the lengths of the 2 strings/array which is for example for our problem above m = 8 (['a','b','c','e','y','f','d','e']) and n =11 ( ['a','e','e','e','e','b','c','e','y','d','e']) which implies solving the subproblems (8*11) times in the worst case scenario(i.e where there is no common subsequence) compared to the mere recursive approach which is 2^(8+11) which is 2^19(524,288) which is a lot of subproblems to solve... in the worst case scenario where as the memoized version does that in just (88) subproblems...
