@@ -28,7 +28,6 @@ def lis_recursive(arr,start=0, end=1):
 # print(lis_recursive([3,1,5,2,6]))
 # print(lis_recursive([1,5,2,1]))
 
-# Time complexity of O(2^n)
 
 
 # Memoized version 
