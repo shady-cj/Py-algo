@@ -54,7 +54,6 @@ def brute_sum(nums, target):
        
         
         if remArr != None:
-  
             remArr.insert(0,idx)
             return remArr
         
