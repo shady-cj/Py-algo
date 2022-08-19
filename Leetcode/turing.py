@@ -24,6 +24,34 @@ def baseball(ops: list) -> int:
     return sum_list
     
 num = baseball(["5", "2", "C", "D", "+"])
-print(num)
+print(num) # 30
 num = baseball(["5", "-2", "4", "C", "D", "9", "+", "+"])
-print(num)
+print(num) # 27
+
+# Optimized Method 0(LogN)
+def baseball_opt(ops, index = 0, arr = []):
+    if (index == len(ops)):
+        return 0
+    sum = 0
+    cancel = False
+    if (ops[index] == "+"):
+        sum += int(arr[len(arr) - 1]) + int(arr[len(arr) - 2])
+    elif (ops[index] == "C"):
+        sum -= int(arr.pop())
+        cancel = True
+    elif (ops[index] == "D"):
+        sum += int(arr[len(arr) - 1]) * 2
+    else:
+        sum += int(ops[index])
+    if (not cancel):
+        arr.append(str(sum))
+    sum += baseball_opt(ops, index + 1, arr)
+   
+    return sum
+   
+   
+   
+num = baseball_opt(["5", "2", "C", "D", "+"])
+print(num) # 30
+num = baseball_opt(["5", "-2", "4", "C", "D", "9", "+", "+"])
+print(num) # 27
