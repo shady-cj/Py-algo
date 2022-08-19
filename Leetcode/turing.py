@@ -55,3 +55,32 @@ num = baseball_opt(["5", "2", "C", "D", "+"])
 print(num) # 30
 num = baseball_opt(["5", "-2", "4", "C", "D", "9", "+", "+"])
 print(num) # 27
+
+mapper = {
+    "+":  lambda op: int(op[len(op) - 1]) + int(op[len(op) - 2]),
+    "C": lambda op: -1 * int(op.pop()),
+    "D": lambda op: int(op[len(op) - 1]) * 2
+}
+def baseball_opt2(ops, index = 0, arr = []):
+    if (index == len(ops)):
+        return 0
+    sum = 0
+    cancel = False
+    if (ops[index] in mapper):
+        if (ops[index] == "C"):
+            cancel = True
+        sum += mapper[ops[index]](arr)
+    else:
+        sum += int(ops[index ])
+    if (not cancel):
+        arr.append(str(sum))
+    sum += baseball_opt2(ops, index + 1, arr)
+   
+    return sum
+   
+   
+   
+num = baseball_opt2(["5", "2", "C", "D", "+"])
+print(num) #30
+num = baseball_opt2(["5", "-2", "4", "C", "D", "9", "+", "+", "+", "5"])
+print(num) #51
