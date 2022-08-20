@@ -2,7 +2,7 @@
 # Write Python 3 code in this online editor and run it.
 
 
-# This Solution Runs in 0(N) - Linear
+# This Solution Runs in 0(N) - Linear and space of 0(N0
 def baseball(ops: list) -> int:
     newList = []
     sum_list = 0
@@ -28,7 +28,7 @@ print(num) # 30
 num = baseball(["5", "-2", "4", "C", "D", "9", "+", "+"])
 print(num) # 27
 
-# Optimized Method 0(LogN)
+# Optimized Method 0(LogN) space remains 0(N)
 def baseball_opt(ops, index = 0, arr = []):
     if (index == len(ops)):
         return 0
