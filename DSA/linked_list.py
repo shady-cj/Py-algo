@@ -70,14 +70,16 @@ class LinkedList:
             current_node = current_node.next
             pos += 1
 
-        if prev_node is None and pos > 0:
+        if self.head is None:
             return None
         self.length -= 1
-        if pos == 0:
+        if self.head is not None and pos == 0:
             self.head = current_node.next
+            if current_node.next is None:
+                self.tail = None
             return self.head
         prev_node.next = current_node.next if current_node else None
-        if current_node.next is None:
+        if current_node and current_node.next is None:
             self.tail = prev_node
         return prev_node.next
 
@@ -90,6 +92,8 @@ class LinkedList:
                 self.length -= 1
                 if prev_node is None:
                     self.head = current_node.next
+                    if current_node.next is None:
+                        self.tail = None
                 else:
                     prev_node.next = current_node.next
                     if current_node.next == None:
@@ -113,11 +117,11 @@ class LinkedList:
             current_node = current_node.next
             pos += 1
 
-        if prev_node is None and pos > 0:
+        if self.head is None:
             self.head = new_node
             self.tail = new_node
             return self.head
-        elif pos == 0:
+        elif self.head is not None and pos == 0:
             new_node.next = self.head
             self.head = new_node
             return self.head
@@ -148,6 +152,15 @@ class LinkedList:
 # 2 -> 3 -> 4 -> 4 -> 5
 
 # cars = LinkedList()
+# cars.append("Ford")
+# print(cars.print_list())
+# cars.remove(0)
+# print(cars.print_list())
+# print(cars.head, cars.tail)
+# cars.insert(0, "Ford")
+# print(cars.head, cars.tail, cars.print_list())
+# cars.insert(0, "Benz")
+# print(cars.head, cars.tail, cars.print_list())
 # cars.append("Ford")
 # cars.append("Mercedes Benz")
 # cars.append("Aston Martin")
@@ -281,17 +294,21 @@ class DoublyLinkedList:
             current_node = current_node.next
             pos += 1
 
-        if prev_node is None and pos > 0:
+        if self.head is None:
             return None
         self.length -= 1
-        if pos == 0:
-            current_node.next.prev = None
+        if self.head is not None and pos == 0:
+            if current_node.next is None:
+                self.tail = None
+            else:
+                current_node.next.prev = None
             self.head = current_node.next
+
             return self.head
         prev_node.next = current_node.next if current_node else None
-        if current_node.next is None:
+        if current_node and current_node.next is None:
             self.tail = prev_node
-        else:
+        elif current_node and current_node.next:
             current_node.next.prev = prev_node
 
         return prev_node.next
@@ -305,7 +322,10 @@ class DoublyLinkedList:
                 self.length -= 1
                 if prev_node is None:
                     self.head = current_node.next
-                    self.head.prev = None
+                    if current_node.next is None:
+                        self.tail = None
+                    else:
+                        self.head.prev = None
                 else:
                     prev_node.next = current_node.next
                     if current_node.next is None:
@@ -331,11 +351,11 @@ class DoublyLinkedList:
             current_node = current_node.next
             pos += 1
 
-        if prev_node is None and pos > 0:
+        if self.head is None:
             self.head = new_node
             self.tail = new_node
             return self.head
-        elif pos == 0:
+        elif self.head is not None and pos == 0:
             new_node.next = self.head
             self.head.prev = new_node
             self.head = new_node
@@ -352,47 +372,52 @@ class DoublyLinkedList:
 
 # 2 -> 3 -> 4 -> 4 -> 5
 
-cars = DoublyLinkedList()
-cars.append("Ford")
-cars.append("Mercedes Benz")
-cars.append("Aston Martin")
-cars.append("McLaurin")
-cars.append("Toyota")
-cars.append("Ferrari")
-print(cars.size())
-print(cars.print_list())
-cars.prepend("KIA")
-cars.prepend("Innoson")
-cars.prepend("Volkswagen")
-cars.prepend("SUV")
-print(cars.size())
-print(cars.print_list())
-cars.insert(0, "Chevrolet")
-cars.insert(1, "Ram")
-print(cars.print_list())
-cars.insert(5, "Honda")
-print(cars.print_list())
-print(cars.size())
-cars.insert(13, "Tesla")
-cars.append("Hyundai")
-print(cars.print_list())
-print(cars.size())
-cars.remove(14)
-print(cars.print_list())
-print(cars.size())
-cars.append("test")
-print(cars.print_list())
-cars.delete("test")
-print(cars.print_list())
-cars.append("Another test")
-print(cars.size())
-print(cars.print_list())
-# cars.reverse_list()
-print()
-print("-------------------------")
-print(cars.print_list())
-cars.append("Final Test")
-print(cars.print_list())
-# cars.reverse_list()
-print(cars.print_list())
-print(cars.print_reverse())
+# cars = DoublyLinkedList()
+# cars.append("Ford")
+# print(cars.print_list())
+# cars.remove(0)
+# print(cars.print_list())
+# print(cars.head, cars.tail)
+# # cars.append("Ford")
+# cars.append("Mercedes Benz")
+# cars.append("Aston Martin")
+# cars.append("McLaurin")
+# cars.append("Toyota")
+# cars.append("Ferrari")
+# print(cars.size())
+# print(cars.print_list())
+# cars.prepend("KIA")
+# cars.prepend("Innoson")
+# cars.prepend("Volkswagen")
+# cars.prepend("SUV")
+# print(cars.size())
+# print(cars.print_list())
+# cars.insert(0, "Chevrolet")
+# cars.insert(1, "Ram")
+# print(cars.print_list())
+# cars.insert(5, "Honda")
+# print(cars.print_list())
+# print(cars.size())
+# cars.insert(13, "Tesla")
+# cars.append("Hyundai")
+# print(cars.print_list())
+# print(cars.size())
+# cars.remove(14)
+# print(cars.print_list())
+# print(cars.size())
+# cars.append("test")
+# print(cars.print_list())
+# cars.delete("test")
+# print(cars.print_list())
+# cars.append("Another test")
+# print(cars.size())
+# print(cars.print_list())
+# # cars.reverse_list()
+# print()
+# print("-------------------------")
+# print(cars.print_list())
+# cars.append("Final Test")
+# print(cars.print_list())
+# # cars.reverse_list()
+# print(cars.print_list())
+# print(cars.print_reverse())
