@@ -46,9 +46,52 @@ def quick_sort(start, end, array):
     return None
 
 
+# import random
+
+# array = [random.randrange(0, 40) for i in range(400)]
+# print(array)
+# quick_sort(0, len(array) - 1, array)
+# print(array)
+
+
+# https://youtu.be/MnSSXH5KWTs?si=sLSYvuBotnSRq_YZ
+
+
+def HoarePartition(start, end, array):
+    if start >= end:
+        return None
+    pivot = start
+    left_ptr = start + 1
+    right_ptr = end
+    while left_ptr < right_ptr:
+        if array[right_ptr] >= array[pivot]:
+            right_ptr -= 1
+
+        elif array[left_ptr] < array[pivot]:
+            left_ptr += 1
+
+        else:
+            array[left_ptr], array[right_ptr] = (
+                array[right_ptr],
+                array[left_ptr],
+            )
+
+    swp_ptr = (
+        left_ptr if left_ptr <= right_ptr else right_ptr
+    )  # swap with the lesser pointer
+    if array[swp_ptr] < array[pivot]:
+        array[pivot], array[swp_ptr] = array[swp_ptr], array[pivot]
+        pivot = swp_ptr
+    HoarePartition(start, pivot - 1, array)
+    HoarePartition(pivot + 1, end, array)
+
+
 import random
 
-array = [random.randrange(0, 40) for i in range(400)]
-print(array)
-quick_sort(0, len(array) - 1, array)
-print(array)
+new_array = [random.randrange(0, 40) for i in range(400)]
+# new_array = [14, 2, 33, 32, 31, 14, 16, 30, 24, 32]
+# [14, 2, 14, 16, 24, 30, 31, 32, 32, 33]
+
+HoarePartition(0, len(new_array) - 1, new_array)
+
+print(new_array)
